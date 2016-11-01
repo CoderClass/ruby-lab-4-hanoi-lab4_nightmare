@@ -1,10 +1,16 @@
 <% Room.all.each do |room| %>
 <ul class="list-group">
-	<li class="list-group-item"><%= link_to room.name, room %></li>
+	<li class="list-group-item" style="margin: 10px 0">
+		<span class="tag tag-primary tag-pill float-xs-right"><%= room.messages.size %></span>
+		<%= link_to room.name, room %>
+	</li>
 </ul>
+
 <% end %>
 
-<%= form_for(Room.new) do |f| %>
-	<%= f.text_field :name %>
-	<%= f.submit "Create Room" %>
+<%= form_for Room.new do |f| %>
+	<div class="form-inline">
+		<%= f.text_field :name , placeholder: "Room's name", class: 'form-control' %>
+		<%= f.submit "Create Room" , class: 'btn btn-primary' %>
+	</div>
 <% end %>

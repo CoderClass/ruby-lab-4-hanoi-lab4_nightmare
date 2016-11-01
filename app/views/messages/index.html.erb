@@ -1,9 +1,17 @@
 <strong style="font-size: 40px;"><%= "Room #{@room.name}"%></strong>
-<ul class="list-group" style="padding: 32px 0;">
+<ul class="list-group messages" style="padding: 32px 0;">
 	<%= render @messages %>
 </ul>
 
-<%= form_for [@room, Message.new] do |f| %>
-	<%= f.text_field :content %>
-	<%= f.submit "Send" %>
-<% end %>
+<div style="padding-bottom: 50px;">
+	<%= form_for ([@room, @room.messages.build]) do |f| %>
+		<div class="form-inline">
+			<%= f.text_field :content, class: 'form-control'%>
+			<%= f.submit "Send", class: 'btn btn-success' %>
+		</div>
+	<% end %>
+</div>
+
+<script>
+	setInterval(updateMessagesViaJSON, 1000);
+</script>
