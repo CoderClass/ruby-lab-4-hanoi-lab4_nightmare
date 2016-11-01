@@ -1,10 +1,26 @@
 class MessagesController < ApplicationController
   def index
-  	# @room = Room.find
-  	# @messages = @messages.room
+  	set_room
+  	@messages = @room.messages
   end
 
-  def show
-    
+  def create
+  	set_room
+  	@message = @room.messages.build message_params
+  	unless @message.save
+  		flash[:error] = "Can not send message."
+  	end
+
+  	redirect_to room_messages_path(@room)
+  end
+
+  private
+
+  def message_params
+  	params.require(:message).permit(:content)
+  end
+
+  def set_room
+  	@room = Room.find params[:room_id]
   end
 end

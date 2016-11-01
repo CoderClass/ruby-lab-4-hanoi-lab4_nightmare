@@ -1,2 +1,8 @@
-<h1>Messages#index</h1>
-<p>Find me in app/views/messages/index.html.erb</p>
+<ul class="list-group">
+	<%= render @messages %>
+</ul>
+
+<%= form_for [@room, Message.new] do |f| %>
+	<%= f.text_field :content %>
+	<%= f.submit "Send" %>
+<% end %>
