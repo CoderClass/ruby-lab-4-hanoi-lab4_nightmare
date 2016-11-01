@@ -1,9 +1,5 @@
 class RoomsController < ApplicationController
 
-	def index
-		@room = Room.find params[:id]
-	end
-
 	def new
 		@room = Room.new
 	end
@@ -20,6 +16,9 @@ class RoomsController < ApplicationController
 	end
 
 	def show
+		@room = Room.find params[:room_id]
+		flash[:success] = "Welcome to this room."
+		redirect_to romm_message_path(@room)
 	end
 
 	private
