@@ -16,9 +16,9 @@ class RoomsController < ApplicationController
 	end
 
 	def show
-		@room = Room.find params[:room_id]
+		@room = Room.find params[:id]
 		flash[:success] = "Welcome to this room."
-		redirect_to romm_message_path(@room)
+		redirect_to room_messages_path(@room)
 	end
 
 	private
