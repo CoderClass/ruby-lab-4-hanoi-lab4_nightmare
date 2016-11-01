@@ -7,6 +7,7 @@ class MessagesController < ApplicationController
   def create
   	set_room
   	@message = @room.messages.build message_params
+    @message.name = current_user
   	unless @message.save
   		flash[:error] = "Can not send message."
   	end
